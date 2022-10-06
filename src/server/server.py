@@ -43,5 +43,5 @@ async def upload_file(request: Request, file: UploadFile = File(...)):
 
 
 
-# To run the app for development: python -m uvicorn src.server.server:app --host 0.0.0.0 --reload
-# To run the app on AWS: python3 -m uvicorn src.server.server:app
+# To run the app for development: python -m uvicorn server.server:app --host 0.0.0.0 --reload
+# To run the app on AWS: python3 -m uvicorn server.server:app
