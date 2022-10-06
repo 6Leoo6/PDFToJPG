@@ -3,3 +3,5 @@ uvicorn
 pathlib
 PyMuPDF
 python-multipart
+jinja2
+swig
