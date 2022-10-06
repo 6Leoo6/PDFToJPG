@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <script src="/static/js/index.js" defer></script>
+    <title></title>
+</head>
+<body>
+    <div class="center"><h1>PDFtoJPG</h1></div>
+    <div class="center">
+        <p id="short-des">Upload a PDF and convert it to JPGs for free!</p>
+    </div>
+    <form action="" id="upload-form">
+        <div class="center vertical-flex">
+            <input type="file" name="uploadfile" id="pdf-input" accept="application/pdf" style="display:none;"/>
+            <label class="btn" for="pdf-input">Choose a PDF</label>
+            <p id="filename-display">No file selected</p>
+            <button type="submit" class="btn" id="submit">Convert to Image</button>
+            <p class="warning" id="no-file-warn" hidden>You must select atleast one file!</p>
+            <div class="loader" id="converting-loader" hidden></div>
+            <a id="file-downloader" hidden>Click here to download the file</a>
+        </div>
+    </form>
+</body>
+</html>
