@@ -1,13 +1,16 @@
+from cgitb import handler
 from pathlib import Path
 
 from fastapi import FastAPI, Request, File, UploadFile, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.cors import CORSMiddleware
+from mangum import Mangum
 
 from server.pdf2jpg import convertPDF
 
 app = FastAPI()
+handler = Mangum(app)
 
 templates = Jinja2Templates(directory='templates')
 
