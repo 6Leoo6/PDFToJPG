@@ -1,6 +1,5 @@
 from io import BytesIO
 from zipfile import ZipFile
-from pathlib import Path
 import fitz
 
 
