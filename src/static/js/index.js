@@ -9,7 +9,6 @@ fileInput.onchange = function () {
   try {
     file.readAsBinaryString(fileInput.files[0]);
     //If there is a file then show the name of it
-    console.log(fileInput.files[0].name);
     displayer.innerText = fileInput.files[0].name;
   } catch {
     displayer.innerText = 'No file selected';
