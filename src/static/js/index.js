@@ -1,5 +1,7 @@
 var form = document.getElementById("upload-form");
 var fileInput = document.getElementById("pdf-input");
+var downloadLink = document.getElementById("file-downloader");
+var loader = document.getElementById("converting-loader");
 
 //Listening for a newly added file
 fileInput.onchange = function () {
@@ -10,6 +12,9 @@ fileInput.onchange = function () {
     file.readAsBinaryString(fileInput.files[0]);
     //If there is a file then show the name of it
     displayer.innerText = fileInput.files[0].name;
+    
+    downloadLink.hidden = true;
+    loader.hidden = true;
   } catch {
     displayer.innerText = 'No file selected';
     return;
@@ -32,8 +37,6 @@ form.addEventListener("submit", async function (event) {
     return;
   }
 
-  var downloadLink = document.getElementById("file-downloader");
-  var loader = document.getElementById("converting-loader");
   loader.hidden = false;
 
   //Waiting for the file to load

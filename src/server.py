@@ -6,12 +6,12 @@ from fastapi.templating import Jinja2Templates
 from starlette.middleware.cors import CORSMiddleware
 from mangum import Mangum
 
-from app.pdf2jpg import convertPDF
+from pdf2jpg import convertPDF
 
 app = FastAPI()
 handler = Mangum(app)
 
-templates = Jinja2Templates(directory=Path(Path(__file__).parent.parent.absolute() / 'app/templates'))
+templates = Jinja2Templates(directory=Path(Path(__file__).parent.parent.absolute() / 'src/templates'))
 
 origins = ["*"]
 
@@ -25,7 +25,7 @@ app.add_middleware(
 
 app.mount(
     "/static",
-    StaticFiles(directory=Path(__file__).parent.parent.absolute() / 'app/static'), #Path(__file__).parent.parent.absolute()
+    StaticFiles(directory=Path(__file__).parent.parent.absolute() / 'src/static'), #Path(__file__).parent.parent.absolute()
     name="static",
 )
 
@@ -43,5 +43,5 @@ async def upload_file(request: Request, file: UploadFile = File(...)):
 
 
 
-# To run the app for development: python -m uvicorn server.server:app --host 0.0.0.0 --reload
+# To run the app for development: python -m uvicorn server:app --host 0.0.0.0 --reload
 # To run the app on AWS: python3 -m uvicorn server.server:app
