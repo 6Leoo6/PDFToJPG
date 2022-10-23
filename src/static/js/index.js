@@ -51,19 +51,19 @@ form.addEventListener("submit", async function (event) {
     //Sending the request with fetch
     var res = await fetch(url, { method: "POST", body: formData });
 
-    //Parsing the download link
-    var json = await res.json()
-    const fileURL = json["url"]
+    //Creating a download link for the .zip file
+    const file = await res.blob();
+    const fileURL = URL.createObjectURL(file);
 
     //Hiding the loader
     loader.hidden = true;
 
     //Setting the filename and the url
+    downloadLink.setAttribute("href", fileURL);
     downloadLink.setAttribute(
       "download",
       `${fileInput.files[0].name.slice(0, -4)}.zip`
     );
-    downloadLink.setAttribute("href", fileURL);
     
     //Unhiding the link
     downloadLink.hidden = false;

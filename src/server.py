@@ -38,8 +38,8 @@ def login(req: Request):
 # --------------------------------------API Requests--------------------------------------
 @app.post("/convert_to_pdf")
 async def upload_file(file: UploadFile = File(...)):
-    url = await convertPDF(file)    
-    return {'url': url}
+    zip_bytes = await convertPDF(file)    
+    return Response(content=zip_bytes, media_type="application/zip")
 
 
 

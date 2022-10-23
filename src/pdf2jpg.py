@@ -24,26 +24,4 @@ async def convertPDF(file):
             # Adding the current page to the zip
             zip.writestr(f'{file.filename}_{i}.jpg', page_bytes)
     zip_bytes.seek(0)
-    return upload_to_s3(zip_bytes)
-
-
-def upload_to_s3(file: BytesIO):
-    bucket_name = 'uploaded-files-pdf-to-jpg'
-
-    s3 = boto3.client("s3")
-
-    existing_names = [key['Key'] for key in s3.list_objects(Bucket=bucket_name)['Contents']]
-    while True:
-        obj_name = ''.join([choice(ascii_letters + digits) for _ in range(15)]) + '.zip'
-        if obj_name not in existing_names:
-            break
-
-    s3.upload_fileobj(file, bucket_name, obj_name)
-
-    url = s3.generate_presigned_url('get_object',
-                                    Params={'Bucket': bucket_name,
-                                            'Key': obj_name},
-                                    ExpiresIn=3600
-    )
-
-    return url
+    return zip_bytes.getvalue()
