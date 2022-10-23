@@ -6,3 +6,4 @@ python-multipart
 jinja2
 swig
 mangum
+boto3
